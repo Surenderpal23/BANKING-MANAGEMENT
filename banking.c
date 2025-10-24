@@ -4,7 +4,8 @@
  int   All_Account_Numbers[100];
 char   All_Names[100][100]; 
 float All_Balances[100];
-int Total_Account=0;
+int Account_Number = 1001;
+int Total_Account = 0;
 
 void CreateAccount();
 void DepositMoney();
@@ -88,7 +89,6 @@ int main(){
 
 void CreateAccount(){
 
-    int New_Account_Num;
     char New_Name[100];
     float New_Balance;
 
@@ -97,22 +97,6 @@ void CreateAccount(){
     if(Total_Account>=100){
         printf("SORRY, THE BANK  DOESN'T HAVE ENOUGH SPACE \n\n");
         return;
-    }
-    
-    printf("ENTER NEW ACCOUNT NUMBER: ");
-    
-    if (scanf("%d", &New_Account_Num) != 1){
-        while (getchar() != '\n');
-         printf("Invalid Input. Please Enter a Number.\n\n");
-         return;
-        }
-        
-        
-        for (int i = 0; i <Total_Account; i++){
-            if(All_Account_Numbers[i] ==New_Account_Num){
-            printf("THIS ACCOUNT NUMBER ALREADY EXISTS. \n\n");
-            return;
-        }
     }
     
     printf("ENTER NAME (single word only): ");
@@ -130,16 +114,20 @@ void CreateAccount(){
         return;
     }
 
-    All_Account_Numbers[Total_Account] = New_Account_Num;
+    All_Account_Numbers[Total_Account] = Account_Number;
     strcpy(All_Names[Total_Account],New_Name);
     All_Balances[Total_Account] = New_Balance;
 
+    printf("========================================\n");
+    printf("    ACCOUNT CREATED SUCCESSFULLY!\n");
+    printf("========================================\n\n");
+    printf("YOUR NEW ACCOUNT NUMBER IS:     %d\n", Account_Number);
+    printf("HOLDER'S NAME:                  %s\n", New_Name);
+    printf("An initial deposit:             %.2f\n\n", New_Balance);
+
+    Account_Number++;
     Total_Account++;
-
-    printf("SUCCESS! \n");
-    printf("ACCOUNT CREATED FOR %s. \n\n", New_Name);
 }
-
 
 void DepositMoney(){
 
